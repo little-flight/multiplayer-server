@@ -1,6 +1,4 @@
-function uuid() {
+export function uuid() {
   return Math.random().toString(16).slice(2);
 }
-
-module.exports = { uuid };
 

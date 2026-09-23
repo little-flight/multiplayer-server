@@ -1,10 +1,10 @@
 {
-  "name": "tlpp-multiplayer",
+  "name": "little-flight-multiplayer",
   "version": "1.0.0",
   "description": "Multiplayer Server for The Little Plane Project",
   "license": "ISC",
   "author": "AttAditya",
-  "type": "commonjs",
+  "type": "module",
   "main": "src/main.js",
   "scripts": {
     "start": "node src/main.js"

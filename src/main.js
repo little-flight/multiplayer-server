@@ -1,10 +1,10 @@
-const { Server } = require("ws");
+import { WebSocketServer } from "ws";
 
-const { RoomManager } = require("./room");
-const { Player } = require("./player");
+import { Player } from "./player.js";
+import { RoomManager } from "./room.js";
 
 const port = process.env.PORT || 8000;
-const server = new Server({ port });
+const server = new WebSocketServer({ port });
 const roomsManager = new RoomManager();
 const players = {};
 

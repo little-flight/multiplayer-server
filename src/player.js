@@ -1,15 +1,14 @@
-const { uuid } = require("./utils");
+import { uuid } from "./utils.js";
 
-class Player {
+export class Player {
   constructor (socket, roomsManager) {
     this.id = uuid();
     this.name = `Player ${this.id}`;
-
     this.room = null;
     this.socket = socket;
     this.roomsManager = roomsManager;
-
     this.registerSocketEvents();
+
     this.handlers = {
       updateDetails: (...args) => this.updateDetails(...args),
       joinRoom: (...args) => this.joinRoom(...args),
@@ -38,8 +37,8 @@ class Player {
 
   handleClose() {
     this.room?.removePlayer(this);
-
     const roomPlayers = Object.values(this.room.players);
+
     roomPlayers.forEach(p => {
       p.sendData("playerLeft", {
         playerId: this.id,
@@ -89,6 +88,7 @@ class Player {
     if (this.room) {
       const players = Object.values(this.room.players);
       const otherPlayers = players.filter(p => p.id !== this.id);
+
       otherPlayers.forEach(p => p.sendData("planeState", {
         playerId: this.id,
         state,
@@ -96,6 +96,4 @@ class Player {
     }
   }
 }
-
-module.exports = { Player };
 

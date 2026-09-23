@@ -1,4 +1,4 @@
-const { uuid } = require("./utils");
+import { uuid } from "./utils.js";
 
 class Room {
   constructor (id) {
@@ -8,7 +8,7 @@ class Room {
     this.startTime = Date.now();
     this.roomVacancy = 10;
   }
-  
+
   addPlayer(player) {
     if (this.roomVacancy <= 0)
       return false;
@@ -31,11 +31,12 @@ class Room {
 
   get time() {
     const GAME_DAY_TIMESTAMP = 120000;
+
     return Date.now() - this.startTime + GAME_DAY_TIMESTAMP;
   }
 }
 
-class RoomManager {
+export class RoomManager {
   constructor () {
     this.rooms = {};
   }
@@ -50,12 +51,11 @@ class RoomManager {
       this.createRoom(roomId);
 
     const room = this.rooms[roomId];
+
     if (!room.addPlayer(player))
       return null;
 
     return room;
   }
 }
-
-module.exports = { Room, RoomManager };
 
